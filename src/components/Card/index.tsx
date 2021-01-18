@@ -8,7 +8,8 @@ const styles =
       padding: '8px 24px 24px 24px',
     },
     page: {
-      width: '100%',
+      display: 'flex',
+      width: '1050px',
     }
 });
 
@@ -26,7 +27,7 @@ const StyledCard: FC<ComponentProps> = ({
 
   return (
     <Card className={classNames({
-        [classes.root]: page,
+        [classes.page]: page,
       },
       classes.root,
       classesName

@@ -3,33 +3,43 @@ import { makeStyles } from '@material-ui/core/styles';
 import CardContent from '@material-ui/core/CardContent';
 import Card from '../Card';
 import Typography from '../Typography';
-import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@material-ui/core';
+import { createStyles, Fade, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Theme, withStyles } from '@material-ui/core';
 import { fetchRequest } from '../../controllers/fetch';
 import { USERS_ENDPOINT } from '../../controllers/url';
 import Loader from '../Loader';
 
+const StyledTableHeaderCell = withStyles((theme: Theme) =>
+  createStyles({
+    head: {
+      fontSize: 24,
+      color: theme.palette.common.white,
+      backgroundColor: theme.palette.primary.main,
+    },
+    body: {
+      fontSize: 14,
+    },
+  }),
+)(TableCell);
+
+const StyledTableRow = withStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      '&:nth-of-type(odd)': {
+        backgroundColor: '#f7f7f7'
+      },
+      '&:hover': {
+        backgroundColor: theme.palette.secondary.light,
+      },
+    },
+  }),
+)(TableRow);
+
 const useStyles = makeStyles({
-  root: {
-    minWidth: 275,
-  },
-  bullet: {
-    display: 'inline-block',
-    margin: '0 2px',
-    transform: 'scale(0.8)',
-  },
-  title: {
-    fontSize: 14,
-  },
   table: {
     width: 500,
     margin: 'auto',
     display: 'block',
   },
-  loader: {
-    height: 250,
-    margin: 'auto',
-    display: 'block',
-  }
 });
 
 interface User {
@@ -40,17 +50,14 @@ interface User {
 
 const Home: FC = () => {
   const classes = useStyles();
-
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [users, setUsers] = useState<User[]>([]);
+  const [users, setUsers] = useState<User[] | null>(null);
 
   useEffect(() => {
     const getData = async () => {
       const result = await fetchRequest<User[]>(USERS_ENDPOINT)
       setUsers(result);
-      console.log('Data: ', result)
     };
-    
+
     getData();    
   }, []);
 
@@ -61,30 +68,36 @@ const Home: FC = () => {
           User list
         </Typography>
         
-        <TableContainer component={Paper} className={classes.table}>
-          <Table aria-label="customized table">
-          <TableHead>
-              <TableRow>
-                <TableCell>Name</TableCell>
-                <TableCell align="right">Email</TableCell>
-              </TableRow>
-            </TableHead>
-          {!users.length ? (
-              <Loader className={classes.loader} />
-          ) : (
-            <TableBody>
-                {users.map((user, index) => (
-                  <TableRow key={index + user.name}>
-                    <TableCell component="th" scope="row">
-                      {user.name}
-                    </TableCell>
-                    <TableCell align="right">{user.email}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-          )}
-          </Table>
-        </TableContainer>
+        <Loader isLoading={!!!users}>
+          <TableContainer component={Paper} className={classes.table}>
+            <Table aria-label="users table">
+            <TableHead>
+                <TableRow color="primary">
+                  <StyledTableHeaderCell>Name</StyledTableHeaderCell>
+                  <StyledTableHeaderCell align="right">Email</StyledTableHeaderCell>
+                </TableRow>
+              </TableHead>
+              <Fade in={!!users}>
+                <TableBody>
+                  {users && users.map((user, index) => (
+                    <StyledTableRow key={index + user.name}>
+                      <TableCell component="th" scope="row">
+                        <Typography>
+                          {user.name}
+                        </Typography>
+                      </TableCell>
+                      <TableCell align="right">
+                        <Typography>
+                          {user.email}
+                        </Typography>
+                      </TableCell>
+                    </StyledTableRow>
+                  ))}
+                </TableBody>
+              </Fade>
+            </Table>
+          </TableContainer>
+        </Loader>
       </CardContent>
     </Card>
   );

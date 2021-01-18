@@ -44,13 +44,13 @@ const textType = [
 type TextTypeValues = typeof textType;
 export type TextType = TextTypeValues[number];
 
-interface ComponentProps extends TypographyProps {
+interface ComponentProps {
   type?: TextType;
   color?: 'primary' | 'secondary' | "textPrimary" | "textSecondary";
   className?: string;
 }
 
-const StyledTypography: FC<ComponentProps> = ({
+const StyledTypography: FC<ComponentProps & TypographyProps> = ({
   children,
   type = 'default',
   color = 'textSecondary',
@@ -61,6 +61,7 @@ const StyledTypography: FC<ComponentProps> = ({
 
   return (
     <Typography
+      {...props}
       color={color}
       className={
         classNames(className, {
@@ -75,7 +76,6 @@ const StyledTypography: FC<ComponentProps> = ({
           classes.fontStyle,
         )
       }
-      {...props}
     >
       {children}
     </Typography>

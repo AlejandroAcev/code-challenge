@@ -14,14 +14,17 @@ const styles =
 });
 
 interface ComponentProps {
+  isLoading: boolean;
   className?: string;
 }
 
-const Loader: FC<ComponentProps> = ({ className }) => {
+const Loader: FC<ComponentProps> = ({ isLoading, className, children }) => {
   const classes = styles();
 
-  return (
+  return isLoading ? (
     <img src={loader} alt="loader-gif" className={classNames(classes.root, className)}/>
+  ) : (
+    <>{children}</>
   );
 }
 

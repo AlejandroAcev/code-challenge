@@ -3,6 +3,8 @@ import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
 import { Box, makeStyles } from '@material-ui/core';
 
+var classNames = require('classnames');
+
 const styles =
   makeStyles({
     root: {
@@ -24,19 +26,10 @@ const StyledButton: FC<ComponentProps> = ({
   className,
 }) => {
   const classes = styles();
-
   return (
-    <Box className={className}>
-      {to ? (
-        <Button color={color} className={classes.root} component={Link as any} to={to}>
-          {children}
-        </Button>
-      ) : (
-        <Button color={color} className={classes.root}>
-          {children}
-        </Button>
-      )}
-    </Box>
+    <Button color={color} className={classNames([className, classes.root])} component={Link as any} to={to}>
+      {children}
+    </Button>
   );
 }
 
