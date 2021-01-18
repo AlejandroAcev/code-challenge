@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import { Box,  createStyles,  Grow,  makeStyles, Theme, WithStyles, withStyles } from '@material-ui/core';
+import { Box,  createStyles,  Grow, Theme, WithStyles, withStyles } from '@material-ui/core';
 import Button from '../Button';
 import Typography from '../Typography';
 

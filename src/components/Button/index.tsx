@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
-import { Box, makeStyles } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core';
 
 var classNames = require('classnames');
 
