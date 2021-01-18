@@ -23,12 +23,17 @@ export interface FetchRequest {
   body?: {};
 }
 
-export const fetchRequest = async <T>(endpoint: ProjectEndpoint, method?: Method, bodyContent?: {}): Promise<T> => {
+export const fetchRequest = async <T>(
+  endpoint: ProjectEndpoint,
+  method?: Method,
+  bodyContent?: {},
+): Promise<T | null> => {
   const apiUrl = process.env.REACT_APP_API_URL;
   
   if (!apiUrl) {
     console.log(apiUrl)
-    throw getErrorMessage(ENV_ERROR);
+    console.error(getErrorMessage(ENV_ERROR));
+    return null;
   }
 
   const url = apiUrl + endpoint;
@@ -42,6 +47,7 @@ export const fetchRequest = async <T>(endpoint: ProjectEndpoint, method?: Method
     return await request.json();
   }
 
-  throw getErrorMessage(REQUEST_ERROR);
+  console.error(getErrorMessage(REQUEST_ERROR));
+  return null;
   
 }
