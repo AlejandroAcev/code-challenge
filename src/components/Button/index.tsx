@@ -25,20 +25,16 @@ const StyledButton: FC<ComponentProps> = ({
 }) => {
   const classes = styles();
 
-  const CustomButton = () => (
-    <Button color={color} className={classes.root}>
-      {children}
-    </Button>
-  )
-
   return (
     <Box className={className}>
       {to ? (
-        <Link to={to} >
-          <CustomButton />
-        </Link>
+        <Button color={color} className={classes.root} component={Link as any} to={to}>
+          {children}
+        </Button>
       ) : (
-        <CustomButton />
+        <Button color={color} className={classes.root}>
+          {children}
+        </Button>
       )}
     </Box>
   );
