@@ -7,14 +7,14 @@ import {
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: "#f3722c",
+      main: "#52796f",
     },
     secondary: {
-      main: "#c99620",
+      main: "#84a98c",
     },
     action: {
-      selected: "#264653",
-      hover: "#4A88A1",
+      hover: "#cad2c5",
+      selected: "#52796f",
     },
     text: {
       primary: "#333",
@@ -26,7 +26,7 @@ const theme = createMuiTheme({
       fontFamily: '"Raleway", "Helvetica", "Arial"',
     },
     body2: {
-      fontFamily: "Raleway",
+      fontFamily: "Helvetica",
     },
   },
 });
