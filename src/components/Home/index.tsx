@@ -46,8 +46,8 @@ const Home: FC = () => {
 
   useEffect(() => {
     const getData = async () => {
-      const result = await fetchRequest(USERS_ENDPOINT)
-      setUsers([]);
+      const result = await fetchRequest<User[]>(USERS_ENDPOINT)
+      setUsers(result);
       console.log('Data: ', result)
     };
     

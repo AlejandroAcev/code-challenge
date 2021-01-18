@@ -23,7 +23,7 @@ export interface FetchRequest {
   body?: {};
 }
 
-export const fetchRequest = async (endpoint: ProjectEndpoint, method?: Method, bodyContent?: {}) => {
+export const fetchRequest = async <T>(endpoint: ProjectEndpoint, method?: Method, bodyContent?: {}): Promise<T> => {
   const apiUrl = process.env.REACT_APP_API_URL;
   
   if (!apiUrl) {
