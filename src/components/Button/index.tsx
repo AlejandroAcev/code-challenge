@@ -20,14 +20,23 @@ interface ComponentProps {
 }
 
 const StyledButton: FC<ComponentProps> = ({
-  children,
-  color = 'primary',
   to,
+  children,
   className,
+  color = 'primary',
 }) => {
   const classes = styles();
   return (
-    <Button color={color} className={classNames([className, classes.root])} component={Link as any} to={to}>
+    <Button
+      color={color}
+      className={
+        classNames([
+          className,
+          classes.root
+      ])}
+      component={Link as any}
+      to={to}
+    >
       {children}
     </Button>
   );

@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Card, makeStyles } from '@material-ui/core';
+import { CardContent, makeStyles } from '@material-ui/core';
 var classNames = require('classnames');
 
 const styles =
@@ -7,34 +7,32 @@ const styles =
     root: {
       padding: '8px 24px 24px 24px',
     },
-    page: {
-      display: 'flex',
-      width: '1050px',
+    fullWidth: {
+      width: '100%'
     }
 });
 
 interface ComponentProps {
-  page?: boolean;
+  fullWidth?: boolean;
   classesName?: string;
 }
 
-const StyledCard: FC<ComponentProps> = ({
+export const StyledCardContent: FC<ComponentProps> = ({
   children,
+  fullWidth,
   classesName,
-  page,
 }) => {
   const classes = styles();
 
   return (
-    <Card className={classNames({
-        [classes.page]: page,
+    <CardContent className={classNames(
+      classesName,
+      {
+        [classes.fullWidth]: fullWidth,
       },
       classes.root,
-      classesName
     )}>
       {children}
-    </Card>
+    </CardContent>
   );
 }
-
-export default StyledCard;

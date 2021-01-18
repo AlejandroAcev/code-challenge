@@ -19,7 +19,7 @@ const Routes: FC = () => {
     <Box className={classes.root}>
       <Router>
       <Navbar />
-        <Layout>
+        <Layout center>
           <Switch>
             <Route exact path="/table">
               <Home />

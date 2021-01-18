@@ -61,14 +61,14 @@ const Home: FC<WithStyles<typeof styles>> = ({ classes }) => {
           </Grow>
           <Grow in={show} {...(show ? { timeout: 2500 } : {})}>
             <Box display="flex" className={classes.menu}>
-              <Button to="/about" className={classes.button}>
-                About
-              </Button>
               <Button to="/table" className={classes.button}>
                 Table
               </Button>
               <Button to="/cards" className={classes.button}>
                 Cards
+              </Button>
+              <Button to="/" className={classes.button}>
+                Home
               </Button>
             </Box>
           </Grow>
