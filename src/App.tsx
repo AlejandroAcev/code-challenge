@@ -6,7 +6,6 @@ import Routes from './components/Routes';
 function App() {
   return (
     <ThemeProvider>
-      {/* <Navbar /> */}
       <Routes />
     </ThemeProvider>
   );

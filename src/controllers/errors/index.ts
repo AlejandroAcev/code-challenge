@@ -1,4 +1,4 @@
-import { DEFAULT_ERROR, ENV_ERROR, REQUEST_ERROR } from "./messages";
+import { DEFAULT_ERROR } from "./messages";
 
 interface ErrorMessage {
   code: number;

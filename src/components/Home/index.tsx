@@ -1,10 +1,12 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
+import Card from '../Card';
+import Typography from '../Typography';
+import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@material-ui/core';
+import { fetchRequest } from '../../controllers/fetch';
+import { USERS_ENDPOINT } from '../../controllers/url';
+import Loader from '../Loader';
 
 const useStyles = makeStyles({
   root: {
@@ -18,38 +20,74 @@ const useStyles = makeStyles({
   title: {
     fontSize: 14,
   },
-  pos: {
-    marginBottom: 12,
+  table: {
+    width: 500,
+    margin: 'auto',
+    display: 'block',
   },
+  loader: {
+    height: 250,
+    margin: 'auto',
+    display: 'block',
+  }
 });
 
-const StyledCard: FC = () => {
+interface User {
+  id: string;
+  name: string;
+  email: string;
+}
+
+const Home: FC = () => {
   const classes = useStyles();
-  const bull = <span className={classes.bullet}>•</span>;
+
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [users, setUsers] = useState<User[]>([]);
+
+  useEffect(() => {
+    const getData = async () => {
+      const result = await fetchRequest(USERS_ENDPOINT)
+      setUsers([]);
+      console.log('Data: ', result)
+    };
+    
+    getData();    
+  }, []);
 
   return (
-    <Card className={classes.root}>
+    <Card page>
       <CardContent>
-        <Typography className={classes.title} color="textSecondary" gutterBottom>
-          Word of the Day
+        <Typography type="h2" >
+          User list
         </Typography>
-        <Typography variant="h5" component="h2">
-          be{bull}nev{bull}o{bull}lent
-        </Typography>
-        <Typography className={classes.pos} color="textSecondary">
-          adjective
-        </Typography>
-        <Typography variant="body2" component="p">
-          well meaning and kindly.
-          <br />
-          {'"a benevolent smile"'}
-        </Typography>
+        
+        <TableContainer component={Paper} className={classes.table}>
+          <Table aria-label="customized table">
+          <TableHead>
+              <TableRow>
+                <TableCell>Name</TableCell>
+                <TableCell align="right">Email</TableCell>
+              </TableRow>
+            </TableHead>
+          {!users.length ? (
+              <Loader className={classes.loader} />
+          ) : (
+            <TableBody>
+                {users.map((user, index) => (
+                  <TableRow key={index + user.name}>
+                    <TableCell component="th" scope="row">
+                      {user.name}
+                    </TableCell>
+                    <TableCell align="right">{user.email}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+          )}
+          </Table>
+        </TableContainer>
       </CardContent>
-      <CardActions>
-        <Button size="small">Learn More</Button>
-      </CardActions>
     </Card>
   );
 }
 
-export default StyledCard;
+export default Home;

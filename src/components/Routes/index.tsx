@@ -1,16 +1,39 @@
+import { Box, makeStyles } from "@material-ui/core";
 import React, { FC } from "react";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Card from "../Home"
+import Home from "..//Home"
+import Layout from "../Layout";
+import Navbar from "../Navbar";
 
-const Routes: FC = ({ children }) => {
+const styles =
+  makeStyles({
+    root: {
+      backgroundColor: '#f7f7f7',
+      height: '100%',
+    },
+});
+
+const Routes: FC = () => {
+  const classes = styles();
   return (
-    <Router>
-      <Switch>
-        <Route path="/">
-          <Card />
-        </Route>
-      </Switch>
-    </Router>
+    <Box className={classes.root}>
+      <Router>
+      <Navbar />
+        <Layout>
+          <Switch>
+            <Route exact path="/table">
+              <Home />
+            </Route>
+            <Route path="/cards">
+              <Home />
+            </Route>
+            <Route path="/">
+              <Home />
+            </Route>
+          </Switch>        
+        </Layout>
+      </Router>
+    </Box>
   );
 }
 

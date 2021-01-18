@@ -7,10 +7,10 @@ import {
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: "#264653",
+      main: "#f3722c",
     },
     secondary: {
-      main: "#2a9d8f",
+      main: "#c99620",
     },
     action: {
       selected: "#264653",
