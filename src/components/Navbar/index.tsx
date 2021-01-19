@@ -47,7 +47,6 @@ const Home: FC<WithStyles<typeof styles>> = ({ classes }) => {
 
   useEffect(() => {
     setShow(true);
-    console.log('Setting!');
   }, [show]);
 
   return (
@@ -55,7 +54,7 @@ const Home: FC<WithStyles<typeof styles>> = ({ classes }) => {
       <Card className={classes.card}>
         <CardContent className={classes.content}>
           <Grow in={show} {...(show ? { timeout: 1000 } : {})}>
-            <Typography type="h2" variant="h1" className={classes.title}>
+            <Typography type="h1" variant="h2" className={classes.title}>
               Code Challenge Page!
             </Typography>
           </Grow>

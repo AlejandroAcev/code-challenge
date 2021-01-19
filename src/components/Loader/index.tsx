@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { makeStyles } from '@material-ui/core';
 
-import loader from '../../media/loader.gif';
+import loader from '../../static/loader.gif';
 var classNames = require('classnames');
 
 const styles =

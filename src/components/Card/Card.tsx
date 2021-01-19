@@ -5,7 +5,7 @@ var classNames = require('classnames');
 const styles =
   makeStyles({
     root: {
-      padding: '8px 24px 24px 24px',
+      padding: '8px 24px 8px 24px',
     },
     page: {
       display: 'flex',
@@ -22,12 +22,12 @@ const styles =
 interface ComponentProps {
   page?: boolean;
   center?: boolean;
-  classesName?: string;
+  className?: string;
 }
 
 export const StyledCard: FC<ComponentProps> = ({
   children,
-  classesName,
+  className,
   page,
   center,
 }) => {
@@ -35,7 +35,7 @@ export const StyledCard: FC<ComponentProps> = ({
 
   return (
     <Card className={classNames(
-      classesName,
+      className,
       {
         [classes.page]: page,
         [classes.center]: center,

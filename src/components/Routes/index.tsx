@@ -1,15 +1,17 @@
 import { Box, makeStyles } from "@material-ui/core";
 import React, { FC } from "react";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Home from "..//Home"
+import TablePage from "../../pages/TablePage"
 import Layout from "../Layout";
 import Navbar from "../Navbar";
+import CardsPage from "../../pages/CardsPage";
 
 const styles =
   makeStyles({
     root: {
+      height: "100%",
+      paddingBottom: '64px',
       backgroundColor: '#f7f7f7',
-      height: '100%',
     },
 });
 
@@ -22,13 +24,13 @@ const Routes: FC = () => {
         <Layout center>
           <Switch>
             <Route exact path="/table">
-              <Home />
+              <TablePage />
             </Route>
             <Route path="/cards">
-              <Home />
+              <CardsPage />
             </Route>
             <Route path="/">
-              <Home />
+              <CardsPage />
             </Route>
           </Switch>        
         </Layout>

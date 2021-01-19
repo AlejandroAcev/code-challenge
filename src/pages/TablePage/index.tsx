@@ -1,13 +1,13 @@
 import React, { FC, useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { StyledCard, StyledCardContent } from '../Card';
-import Typography from '../Typography';
+import { StyledCard, StyledCardContent } from '../../components/Card';
+import Typography from '../../components/Typography';
 import { createStyles, Fade, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Theme, withStyles } from '@material-ui/core';
 import { fetchRequest } from '../../controllers/fetch';
 import { USERS_ENDPOINT } from '../../controllers/url';
-import Loader from '../Loader';
-import Layout from '../Layout';
-import Breadcrumb from '../Breadcrumbs';
+import Loader from '../../components/Loader';
+import Layout from '../../components/Layout';
+import Breadcrumb from '../../components/Breadcrumbs';
 
 const StyledTableHeaderCell = withStyles((theme: Theme) =>
   createStyles({
@@ -42,13 +42,6 @@ const useStyles = makeStyles({
     display: 'block',
     marginTop: '12px',
   },
-  layout: {
-    width: '100%',
-    margin: '0',
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  },
 });
 
 interface User {
@@ -57,7 +50,7 @@ interface User {
   email: string;
 }
 
-const Home: FC = () => {
+const TablePage: FC = () => {
   const classes = useStyles();
   const [users, setUsers] = useState<User[] | null>(null);
 
@@ -73,16 +66,16 @@ const Home: FC = () => {
   return (
     <StyledCard page>
       <StyledCardContent fullWidth>
-        <Breadcrumb routes={['Menu', 'Home']} />
+        <Breadcrumb routes={['Home', 'Table']} />
         <Typography type="h2">
-          User list
+          Users table
         </Typography>
         
-        <Layout center className={classes.layout}>
+        <Layout center>
           <Loader isLoading={!!!users}>
             <TableContainer component={Paper} className={classes.table}>
               <Table aria-label="users table">
-              <TableHead>
+                <TableHead>
                   <TableRow color="primary">
                     <StyledTableHeaderCell>Name</StyledTableHeaderCell>
                     <StyledTableHeaderCell align="right">Email</StyledTableHeaderCell>
@@ -115,4 +108,4 @@ const Home: FC = () => {
   );
 }
 
-export default Home;
+export default TablePage;
