@@ -5,6 +5,7 @@ import TablePage from "../../pages/TablePage"
 import Layout from "../Layout";
 import Navbar from "../Navbar";
 import CardsPage from "../../pages/CardsPage";
+import HomePage from "../../pages/HomePage";
 
 const styles =
   makeStyles({
@@ -30,7 +31,7 @@ const Routes: FC = () => {
               <CardsPage />
             </Route>
             <Route path="/">
-              <CardsPage />
+              <HomePage />
             </Route>
           </Switch>        
         </Layout>

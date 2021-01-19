@@ -9,6 +9,7 @@ import Loader from '../../components/Loader';
 import Layout from '../../components/Layout';
 import Breadcrumb from '../../components/Breadcrumbs';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import { User } from '../../models/User';
 
 const useStyles = makeStyles({
   cardList: {
@@ -32,12 +33,6 @@ const useStyles = makeStyles({
     fontSize: 60,
   },
 });
-
-interface User {
-  id: string;
-  name: string;
-  email: string;
-}
 
 const CardsPage: FC = () => {
   const classes = useStyles();
